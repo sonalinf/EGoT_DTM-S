@@ -5,14 +5,15 @@
 #
 ##########################
 
-import socket
+    import socket
 
-# function to print machine information
-def print_machine_info()
-    hostname = socket.gethostname()
-    IPAddr = socket.gethostbyname(hostname)
+    # function to print machine information
+    def print_machine_info()
+        hostname = socket.gethostname()
+        IPAddr = socket.gethostbyname(hostname)
 
-    print("Your Computer Name is:" + hostname)
-    print("Your Computer IP Address is:" + IPAddr)
-if __name__ == '__main__':
- print_machine_info()
+        print("Your Computer Name is: %s" + hostname)
+        print("Your Computer IP Address is: %s" + IPAddr)
+
+    if __name__ == '__main__': 
+        print_machine_info()
