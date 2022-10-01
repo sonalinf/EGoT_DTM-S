@@ -3,7 +3,7 @@ import socket
 import threading
 
 HEADER = 64
-PORT = 22
+PORT = 8080
 SERVER = socket.gethostbyname(socket.gethostname())
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
