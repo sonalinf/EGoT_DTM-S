@@ -7,7 +7,8 @@ FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
 #SERVER = "192.168.0.2" 
 #SERVER = "127.0.1.1"
-SERVER = socket.gethostbyname(socket.gethostname())
+SERVER = socket.gethostbyname("192.168.1.48")
+#SERVER = socket.gethostbyname(socket.gethostname())
 # replace with webaddres such as:
 #    remote_host = 'www.python.org'
 #get the ipaddress of this computer by name
