@@ -4,7 +4,7 @@ HEADER = 64
 PORT = 5050
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
-SERVER = "192.168.0.2" 
+SERVER = "192.168.0.4" 
 #SERVER = "10.200.147.231"
 # replace with webaddres such as:
 #    remote_host = 'www.python.org'
