@@ -14,7 +14,7 @@ port = 5050
 # instead we have inputted an empty string
 # this makes the server listen to requests
 # coming from other computers on the network
-s.bind(('127.0.0.1', port))		
+s.bind(('127.0.0.1', 5050))		
 print ("socket binded to %s" %(port))
 
 # put the socket into listening mode
