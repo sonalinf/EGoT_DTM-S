@@ -3,7 +3,7 @@ import socket
 import threading
 
 HEADER = 64
-PORT = 5050
+PORT = 80
 #SERVER = socket.gethostbyname(socket.gethostname())
 SERVER = ''
 #Method 2
