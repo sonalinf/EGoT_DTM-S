@@ -5,6 +5,8 @@ import threading
 
 
 HEADER = 64
+FORMAT = 'utf-8'
+DISCONNECT_MESSAGE = "!DISCONNECT"
 s = socket.socket()
 s.settimeout(1000)
 s.bind(('',9991))
