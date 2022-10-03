@@ -6,11 +6,11 @@ PORT = 5050
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
 #SERVER = "192.168.0.2" 
-#SERVER = "127.0.1.1"
+#SERVER = "127.0.0.1"
 #Method 2
-SERVER = socket.gethostbyname("localhost")
+#SERVER = socket.gethostbyname("localhost")
 #Method 3
-#SERVER = socket.gethostbyname("192.168.1.48")
+SERVER = socket.gethostbyname('127.0.0.1')
 #SERVER = socket.gethostbyname(socket.gethostname())
 # replace with webaddres such as:
 #    remote_host = 'www.python.org'
@@ -34,6 +34,5 @@ send("Hello World!")
 input()
 send("Hello Everyone!")
 input()
-send("Hello Tim!")
 
 send(DISCONNECT_MESSAGE)

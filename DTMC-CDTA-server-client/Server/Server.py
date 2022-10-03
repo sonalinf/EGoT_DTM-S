@@ -7,9 +7,9 @@ PORT = 5050
 #SERVER = socket.gethostbyname(socket.gethostname())
 SERVER = ''
 #Method 2
-SERVER = socket.gethostbyname("localhost")
+#SERVER = socket.gethostbyname("localhost")
 #Method 3
-#SERVER = socket.gethostbyname("192.168.1.48")
+SERVER = socket.gethostbyname("127.0.0.1")
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
