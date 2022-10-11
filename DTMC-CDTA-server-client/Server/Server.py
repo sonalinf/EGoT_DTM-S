@@ -5,7 +5,7 @@ import threading
 
 
 HEADER = 64
-PORT = 5050
+PORT = 9991
 SERVER = socket.gethostbyname(socket.gethostname())
 #Method 2
 #SERVER = socket.gethostbyname("localhost")

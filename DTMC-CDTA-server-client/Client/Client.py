@@ -2,13 +2,15 @@
 import socket
 
 HEADER = 64
-PORT = 5050
+PORT = 9991
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
 #Method 2
 #SERVER = socket.gethostbyname("localhost")
 #Method 3
-SERVER = socket.gethostbyname('192.168.0.178')
+#SERVER = socket.gethostbyname('192.168.0.114')
+#SERVER = socket.gethostbyname('192.168.88.169')
+SERVER = socket.gethostbyname('172.30.29.122')
 #SERVER = socket.gethostbyname(socket.gethostname())
 # replace with webaddres such as:
 #    remote_host = 'www.python.org'
