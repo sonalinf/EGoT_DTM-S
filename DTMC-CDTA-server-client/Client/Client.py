@@ -10,7 +10,7 @@ DISCONNECT_MESSAGE = "!DISCONNECT"
 #Method 3
 #SERVER = socket.gethostbyname('192.168.0.114')
 #SERVER = socket.gethostbyname('192.168.88.169')
-SERVER = socket.gethostbyname('172.30.29.122')
+SERVER = socket.gethostbyname('10.200.144.33')
 #SERVER = socket.gethostbyname(socket.gethostname())
 # replace with webaddres such as:
 #    remote_host = 'www.python.org'
