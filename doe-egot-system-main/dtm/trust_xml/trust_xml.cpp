@@ -3,21 +3,33 @@
 
 namespace pt = boost::property_tree;
 
-namespace dtm
+namespace trust
 {
+    boost::property_tree::ptree Treeify(const std::string &xml_str)
+    {
+        // utility function to help translate strings to/from objects
+        std::stringstream ss (xml_str);
+        boost::property_tree::ptree pt;
+        boost::property_tree::xml_parser::read_xml(ss, pt);
+        return pt;
+    };
+    
     boost::property_tree::ptree Treeify(const Message& message)
     {
         pt::ptree tree;
         tree.put("message.to", message.to);
         tree.put("message.from", message.from);
-        tree.put("message.command", message.command);
-        tree.put("message.timestamp", message.timestamp);
-
-        for (const auto& arg : message.args)
+        
+        for (const auto& arg : message.contents)
         {
-            tree.put("message.args.key", arg.first);
-            tree.put("message.args.value", arg.second);
-        }
+            if (arg.first == "body"){
+                pt::ptree body = Treeify(arg.second);
+                tree.put_child("message.contents."+arg.first, body);
+            }
+            else {
+                tree.put("message.contents."+arg.first, arg.second);
+            }   
+        }  
 
         return tree;
     };
