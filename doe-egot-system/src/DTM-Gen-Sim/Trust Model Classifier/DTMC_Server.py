@@ -1,65 +1,63 @@
+#!/usr/bin/python3
+# https://flaviocopes.com/python-http-server/
+# https://pythonsansar.com/creating-simple-http-server-python/
+from pathlib import Path
+import sys, os
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import ssl
-import sys
-from http.server import HTTPServer, BaseHTTPRequestHandler
-from bs4 import BeautifulSoup
-from urllib.parse import parse_qs
-from socketserver import ThreadingMixIn
-import threading
+from datetime import datetime
 
-threding_count = 0
-HOST_NAME = "localhost"
-PORT = 8000
-message_content = {}
+HOST_NAME = "0.0.0.0"
+PORT = 8090
+LOG = ""
+ROOT = ""
+cwd = str(Path.cwd())
+path = cwd
+class handler(BaseHTTPRequestHandler):
 
-httpd = HTTPServer((HOST_NAME, PORT), BaseHTTPRequestHandler)
-
-# addition of SSL
-#httpd.socket = ssl.wrap_socket (httpd.socket, keyfile="./server.key", certfile='./client.crt', server_side=True)
-#httpd.socket=ssl.wrap_socket(httpd.socket, server_side=True, certfile="ssl/server.crt",keyfile="ssl/server.key", ca_certs="ssl/client.crt")
-httpd.socket=ssl.wrap_socket(httpd.socket, server_side=True, certfile="./server.crt",keyfile="./server.key", ca_certs="./client.crt")
-
-#class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-class handler(ThreadingMixIn, HTTPServer):
-    #GET for viewing messages
-    def do_GET(self):
-        print("get_start")
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b'Message Received!')
-        print("get_end")
-    #POST for submitting messages
     def do_POST(self):
-        print("post_start")
+        query_pos = self.path.find('?',0,len(self.path))
+        base_path = self.path[:query_pos]
+        if (query_pos == -1 and base_path != '/na'):
+            self.send_response(404)
+            self.end_headers()
+        else:
+            self.send_response(201)
+            self.end_headers()
 
-        length = int(self.headers['Content-Length'])
-        data = self.rfile.read(length).decode()
-        print("data")
-        message = parse_qs(data)["message"][0]
-
-        self.send_response(200)
-        self.send_header('Content-type', 'text/plain; charset=utf-8')
-        self.end_headers()
-        self.wfile.write(message.encode())
-        #self.wfile.write(self.path[1:])
-        a.message_content = data
-        print("POST_end")
-class a():
-   message_content = BeautifulSoup((message_content, 'r'), "html.parser")
-   threding_count
-   import classifier
+            with open(LOG,'a') as file:
+                content_length = int(self.headers['Content-Length'])
+                file.write(self.rfile.read(content_length).decode("utf-8"))
 
 if __name__ == "__main__":
-    #server = HTTPServer(('', 8000), SimpleHTTPRequestHandler)
-    httpd.serve_forever()
-    while True:
-        conn, addr = httpd.accept()
-        try:
-            thread = threading.Thread(target=handler, args=(conn, addr))
-            thread.start()
-            threding_count = {threading.activeCount() - 1}
-            print(f"[ACTIVE CONNECTIONS] {threading.activeCount() - 1}")
-            print = threding_count
-        except KeyboardInterrupt:
-            httpd.server_close()
+    print('DTMC Server starting...')
+    cwd = str(Path.cwd())
+    LOG = cwd + datetime.now().strftime('/log_%H_%M_%d_%m_%Y.log')
+    ROOT = cwd + '/build/bin'
+
+    server = HTTPServer((HOST_NAME, PORT), handler)
+
+    # Create an SSLContext instance by specifying the highest TLS protocol
+    # that both the client and the server supports
+    ssl_ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    ssl_ctx.verify_mode = ssl.CERT_REQUIRED
+    ssl_ctx.check_hostname = False # If set to True, only the hostname that matches the certificate will be accepted
+    ssl_ctx.hostname_checks_common_name = True
+    ssl_ctx.load_verify_locations(cafile='C:/Users/sonal/Documents/GitHub/EGoT_DTM-S/doe-egot-system/src/DTM-Gen-Sim/Trust Model Classifier/client.crt')
+    #ssl_ctx.get_ca_certs()
+    
+    ssl_ctx.load_cert_chain(certfile='C:/Users/sonal/Documents/GitHub/EGoT_DTM-S/doe-egot-system/src/DTM-Gen-Sim/Trust Model Classifier/server.crt', keyfile='C:/Users/sonal/Documents/GitHub/EGoT_DTM-S/doe-egot-system/src/DTM-Gen-Sim/Trust Model Classifier/server.key')
+    server.socket = ssl_ctx.wrap_socket(
+        server.socket, 
+        server_side=True,
+        do_handshake_on_connect=True)
+
+    print(ssl_ctx.cert_store_stats())
+
+    print(f"Server started http://{HOST_NAME}:{PORT}")
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        server.server_close()
         print("Server stopped successfully")
         sys.exit(0)
