@@ -6,11 +6,14 @@ import sys, os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import ssl
 from datetime import datetime
+from bs4 import BeautifulSoup
+import Trust_Model_Classifier
 
 HOST_NAME = "0.0.0.0"
 PORT = 8090
 ROOT = sys.argv[0]
 LOG = ROOT
+message_content = {}
 
 def logPost (data):
     with open(LOG,'a') as file:
@@ -28,10 +31,11 @@ class handler(BaseHTTPRequestHandler):
             content_length = int(self.headers['Content-Length'])
             data = self.rfile.read(content_length).decode("utf-8")
             logPost(data)
+            a.message_content = data
 
-#class a():
-  #message_content = BeautifulSoup((message_content, 'r'), "html.parser")
-  #import classifier
+class a():
+  message_content = BeautifulSoup((message_content, 'r'), "html.parser")
+  import Trust_Model_Classifier.classifier
 
 if __name__ == "__main__":
     LOG = ROOT + datetime.now().strftime('/log_%H_%M_%d_%m_%Y.log')
