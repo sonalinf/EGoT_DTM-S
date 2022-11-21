@@ -1,2 +1,0 @@
-/mnt/c/Users/sonal/Documents/GitHub/doe-egot-system/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/sonal/Documents/GitHub/doe-egot-system/build/CMakeFiles/edit_cache.dir
