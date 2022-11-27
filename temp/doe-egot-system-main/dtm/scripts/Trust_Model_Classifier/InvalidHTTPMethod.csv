@@ -1,0 +1,3 @@
+Actor,Message Eval Catagory,Current Time,Transit Time,Attack Status
+DCM,Ex,1621378517,0.26,No Attack
+GSP,ERR: Invalid HTTP method,1621378517,0.2,No Attack
