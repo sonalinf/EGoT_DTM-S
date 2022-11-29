@@ -7,7 +7,8 @@ import random
 import os
 import sys
 import subprocess
-from simple_server import a
+import simple_server
+
 #from test1 import a
 #import argparse
 
@@ -112,7 +113,9 @@ DER_msg = {
 #soup = BeautifulSoup((sys.argv, 'r'), "html.parser")
 
 #soup =  (BeautifulSoup.prettify(a.s, "xml"))
-soup = a.message_content
+#soup = a.message_content
+message = BeautifulSoup((simple_server.message, 'r'), "html.parser")
+soup = message
 #soup = BeautifulSoup(open(args.file, 'r'), "html.parser")
 """ i = 1
 while os.path.isfile(f'{i}_ExpectedOperation.xml'):
