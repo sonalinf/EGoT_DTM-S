@@ -7,19 +7,19 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 #from bs4 import BeautifulSoup
 import ssl
 from datetime import datetime
-<<<<<<< Updated upstream
+#<<<<<<< Updated upstream
 #adding a small change
-=======
+#=======
 # tried three methods of  imports.
 # following also gives an error when the classifier is in the scripts folder
 #import classifier
 # error caused by line 11 - 14
 try:
-    from .Trust_Model_Classifier import classifier
+    from trust_model_classifier import classifier
 except ImportError:
-    from Trust_Model_Classifier import classifier
+    from trust_model_classifier import classifier
     
->>>>>>> Stashed changes
+#>>>>>>> Stashed changes
 HOST_NAME = "0.0.0.0"
 PORT = 8090
 ROOT = sys.argv[0]
