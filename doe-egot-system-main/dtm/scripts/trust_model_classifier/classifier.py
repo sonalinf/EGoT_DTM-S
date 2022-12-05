@@ -7,6 +7,11 @@ import random
 import os
 import sys
 import subprocess
+
+print ("Current working dir : %s" % os.getcwd())
+path = os.getcwd()
+new = path + '/dtm/scripts'
+sys.path.append(new)
 import simple_server
 
 #from test1 import a
