@@ -12,6 +12,7 @@ print ("Current working dir : %s" % os.getcwd())
 path = os.getcwd()
 new = path + '/dtm/scripts'
 sys.path.append(new)
+#from simple_server import a, message_content
 import simple_server
 
 #from test1 import a
@@ -119,8 +120,11 @@ DER_msg = {
 
 #soup =  (BeautifulSoup.prettify(a.s, "xml"))
 #soup = a.message_content
-message = BeautifulSoup((simple_server.message, 'r'), "html.parser")
-soup = message
+#soup = r1.message
+soup = butysoup.message_c
+#message_content = simple_server.butysoup.result
+#soup = BeautifulSoup((message_content, 'r'), "html.parser")
+print(soup)
 #soup = BeautifulSoup(open(args.file, 'r'), "html.parser")
 """ i = 1
 while os.path.isfile(f'{i}_ExpectedOperation.xml'):
